@@ -2,14 +2,16 @@ import TodoItem from "./TodoItem"
 
 const TodoList = (props) => {
     const {
+        filtredTasks,
         onTaskCompleteChange,
         onDeleteTaskButtonClick,
         tasks = []
     } = props
+ 
     return (
+        
         <ul className="todo__list">
-
-            {tasks.map((task) => 
+            {(filtredTasks ?? tasks).map((task) =>
                 <TodoItem
                     onTaskCompleteChange={onTaskCompleteChange}
                     onDeleteTaskButtonClick={onDeleteTaskButtonClick}

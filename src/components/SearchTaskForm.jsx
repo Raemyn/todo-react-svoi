@@ -2,13 +2,16 @@ import Field from "./Field"
 
 const SearchTaskForm = (props) => {
   const {
-    onSearchInput
+    onSearchInput,
+    searchQuery,
+    setSearchQuery
   } = props
   return (
-    <form className="todo__form" onSubmit={(event)=>event.preventDefault()}
+    <form className="todo__form" onSubmit={(event) => event.preventDefault()}
     >
       <Field
-        onInput={(event) => onSearchInput(event.target.value)}
+        value={searchQuery}
+        onInput={(event) => setSearchQuery(event.target.value)}
         id={"search-task"}
         className={'todo__field'}
         type={'search'}

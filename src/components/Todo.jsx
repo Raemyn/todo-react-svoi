@@ -1,15 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AddTaskForm from "./AddTaskForm"
 import SearchTaskForm from "./SearchTaskForm"
 import TodoInfo from "./TodoInfo"
 import TodoList from "./TodoList"
 
 const Todo = () => {
-    const [tasks, setTasks] = useState([
-        { id: 'task-1', title: 'Купить молоко', isDone: false, },
-        { id: 'task-2', title: 'Погладить кота', isDone: true, },
-    ]);
+    const [tasks, setTasks] = useState(() => {
 
+        const savedTasks = localStorage.getItem('tasks')
+        if (savedTasks) return JSON.parse(savedTasks)
+        return [{ id: 'task-1', title: 'Купить молоко', isDone: false, },
+        { id: 'task-2', title: 'Погладить кота', isDone: true, },
+        ];
+
+    })
+    useEffect(() => {
+        console.log(`Сохраняем данные ${tasks}`)
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }, [tasks])
     const [newTaskTitle, setNewTaskTitle] = useState('')
 
     const deleteALLTask = () => {
@@ -47,8 +55,11 @@ const Todo = () => {
         console.log('Задача добавлена');
     }
 
+    const [searchQuery, setSearchQuery] = useState('');
 
-
+    const clearSearchQuery = searchQuery.trim().toLowerCase();
+    const filtredTasks = clearSearchQuery.length > 0
+        ? tasks.filter(({ title }) => title.toLowerCase().includes(clearSearchQuery)) : null
     return (
 
         <div className="todo">
@@ -60,6 +71,8 @@ const Todo = () => {
             />
 
             <SearchTaskForm
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
                 onSearchInput={filterTasks}
             />
 
@@ -70,6 +83,7 @@ const Todo = () => {
                 }
                 total={tasks.length} />
             <TodoList
+                filtredTasks={filtredTasks}
                 onDeleteTaskButtonClick={deleteTask}
                 tasks={tasks}
                 onTaskCompleteChange={toggleTaskComplete}

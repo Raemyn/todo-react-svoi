@@ -7,7 +7,7 @@ const Field = (props) => {
     type = 'text',
     children,
     onInput,
-
+    value,
 
   } = props
 
@@ -20,7 +20,7 @@ const Field = (props) => {
         {children}
       </label>
       <input
-
+        value={value}
         className="field__input"
         id={id}
         placeholder=" "

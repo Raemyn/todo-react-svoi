@@ -1,12 +1,12 @@
-import { Children } from "react"
+
 
 const Field = (props) => {
   const {
     className = '',
     id,
     type = 'text',
-    children
-
+    children,
+    onInput,
 
 
   } = props
@@ -20,11 +20,13 @@ const Field = (props) => {
         {children}
       </label>
       <input
+
         className="field__input"
         id={id}
         placeholder=" "
         autoComplete="off"
         type={type}
+        onInput={onInput}
       />
     </div>
   )

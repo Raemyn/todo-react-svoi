@@ -1,11 +1,15 @@
 const Button = (props) => {
+    
     const {
         type,
         children,
-        className='',
+        className = '',
+        onAddTaskButtonClick,
     } = props
     return (
         <button
+
+            onClick={onAddTaskButtonClick}
             className={`button ${className}`}
             type={type}
         >{children}

@@ -16,6 +16,18 @@
   translate: 0 -50%;
 }
 
+.field__error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
 .field__input {
   --fieldInputPaddingX: 16px;
   --fieldSeachInputIconSize: 16px;
@@ -35,6 +47,10 @@
   &:focus {
     background-color: var(--color-gray-1);
     outline: none;
+  }
+
+  &.is-invalid {
+    border-color: var(--color-red);
   }
 
   &[type="search"] {

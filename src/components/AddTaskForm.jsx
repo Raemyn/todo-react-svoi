@@ -1,11 +1,11 @@
-import { memo, useContext } from "react"
+import { memo, useContext, useState } from "react"
 import Button from "./Button"
 import Field from "./Field"
 import { TaskContext } from "../context/TaskContext"
 
 const AddTaskForm = () => {
 
-
+    const [error, setError] = useState('')
     const onSubmit = (event) => {
         event.preventDefault()
         addTask()
@@ -14,16 +14,25 @@ const AddTaskForm = () => {
         addTask, newTaskTitle,
         setNewTaskTitle,
     } = useContext(TaskContext)
+    const onInput = (event) => {
+        const { value } = event.target
+        const clearValue = value.trim()
+        const hasOnlySpaces = value.length > 0 && clearValue.length === 0
+        setNewTaskTitle(value)
+        setError(hasOnlySpaces ? 'The task connot be empty' : '')
+    }
     return (
         <form className="todo__form" onSubmit={onSubmit}>
             <Field
                 value={newTaskTitle}
-                onInput={(event) => setNewTaskTitle(event.target.value)}
+                onInput={onInput}
                 id={"new-task"}
                 className='todo__field'
                 label='New task title'
+                error={error}
             >New task title</Field>
             <Button
+                isDisabled={newTaskTitle.trim().length === 0}
                 type={'submit'}
             >
                 Add

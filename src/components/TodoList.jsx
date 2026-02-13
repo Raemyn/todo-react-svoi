@@ -1,3 +1,4 @@
+import { memo } from "react"
 import TodoItem from "./TodoItem"
 
 const TodoList = (props) => {
@@ -7,9 +8,9 @@ const TodoList = (props) => {
         onDeleteTaskButtonClick,
         tasks = []
     } = props
- 
+
     return (
-        
+
         <ul className="todo__list">
             {(filtredTasks ?? tasks).map((task) =>
                 <TodoItem
@@ -27,4 +28,4 @@ const TodoList = (props) => {
         </ul>
     )
 }
-export default TodoList
+export default memo(TodoList)

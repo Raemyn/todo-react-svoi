@@ -1,3 +1,4 @@
+import { memo } from "react"
 import Field from "./Field"
 
 const SearchTaskForm = (props) => {
@@ -21,4 +22,4 @@ const SearchTaskForm = (props) => {
     </form>
   )
 }
-export default SearchTaskForm
+export default memo(SearchTaskForm) 

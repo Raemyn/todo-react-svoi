@@ -1,3 +1,5 @@
+import { memo } from "react"
+
 const Button = (props) => {
     
     const {

@@ -38,9 +38,6 @@ const Todo = () => {
             })
         )
     }
-    const filterTasks = (query) => {
-        console.log(`Поиск ${query}`)
-    }
     const addTask = () => {
         if (newTaskTitle.trim().length > 0) {
             const newTask = {
@@ -73,7 +70,6 @@ const Todo = () => {
             <SearchTaskForm
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
-                onSearchInput={filterTasks}
             />
 
             <TodoInfo

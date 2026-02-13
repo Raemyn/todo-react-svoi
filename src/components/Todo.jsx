@@ -3,6 +3,7 @@ import AddTaskForm from "./AddTaskForm"
 import SearchTaskForm from "./SearchTaskForm"
 import TodoInfo from "./TodoInfo"
 import TodoList from "./TodoList"
+import { TaskContext } from "../context/TaskContext"
 
 const Todo = () => {
     const [tasks, setTasks] = useState(() => {
@@ -15,7 +16,7 @@ const Todo = () => {
 
     })
     useEffect(() => {
-        console.log(`Сохраняем данные ${tasks}`)
+
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }, [tasks])
     const [newTaskTitle, setNewTaskTitle] = useState('')
@@ -50,8 +51,6 @@ const Todo = () => {
             setTasks(prev => [...prev, newTask])
             setNewTaskTitle('')
         }
-
-        console.log('Задача добавлена');
     }, [newTaskTitle])
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -64,36 +63,26 @@ const Todo = () => {
             ? tasks.filter(({ title }) => title.toLowerCase().includes(clearSearchQuery)) : null
     }, [searchQuery, tasks])
 
-    return (
+    return (<TaskContext.Provider
+        value={{
+            tasks, filtredTasks, deleteTask, deleteALLTask, toggleTaskComplete, addTask, newTaskTitle,
+            setNewTaskTitle, searchQuery,
+            setSearchQuery
+        }}
+    >
 
         <div className="todo">
             <h1 className="todo__title">To Do List</h1>
-            <AddTaskForm
-                newTaskTitle={newTaskTitle}
-                setNewTaskTitle={setNewTaskTitle}
-                addTask={addTask}
-            />
+            <AddTaskForm/>
 
-            <SearchTaskForm
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-            />
+            <SearchTaskForm  />
 
-            <TodoInfo
-                onDeleteAllButtonClick={deleteALLTask}
-                done={
-                    tasks.filter((task) => task.isDone !== true).length
-                }
-                total={tasks.length} />
-            <TodoList
-                filtredTasks={filtredTasks}
-                onDeleteTaskButtonClick={deleteTask}
-                tasks={tasks}
-                onTaskCompleteChange={toggleTaskComplete}
+            <TodoInfo />
 
-            />
+            <TodoList />
+
         </div>
 
-    )
+    </TaskContext.Provider>)
 }
 export default Todo

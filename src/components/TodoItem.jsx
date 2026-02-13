@@ -1,20 +1,23 @@
+import { useContext } from "react";
+import { TaskContext } from "../context/TaskContext";
+
 const TodoItem = (props) => {
   const {
-    onTaskCompleteChange,
-    onDeleteTaskButtonClick,
     id,
     title,
     className,
     isDone,
   } = props;
-
+const {
+    toggleTaskComplete,deleteTask
+} = useContext(TaskContext)
   return (
     <li className={`todo-item ${className}`}>
       <input
         className="todo-item__checkbox"
         id={id}
         type="checkbox"
-        onChange={(e) => onTaskCompleteChange(id, e.target.checked)} // Исправлено!
+        onChange={(e) => toggleTaskComplete(id, e.target.checked)} // Исправлено!
         checked={isDone}
       />
       <label
@@ -24,7 +27,7 @@ const TodoItem = (props) => {
         {title}
       </label>
       <button
-        onClick={() => onDeleteTaskButtonClick(id)}
+        onClick={() => deleteTask(id)}
         className="todo-item__delete-button"
         aria-label="Delete"
         title="Delete"

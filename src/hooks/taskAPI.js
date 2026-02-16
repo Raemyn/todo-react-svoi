@@ -6,6 +6,9 @@ const taskAPI = {
     getAll: () => {
         return fetch(url).then((res) => res.json())
     },
+    getById: (id) => {
+        return fetch(`${url}/${id}`).then((res) => res.json())
+    },
     add: (task) => {
         return fetch(url, {
             method: 'POST',
@@ -19,11 +22,11 @@ const taskAPI = {
     deleteAll: (tasks) => {
         return Promise.all(tasks.map(({ id }) => taskAPI.delete(id)))
     },
-    toggleCompleate:(id,isDone)=>{
-        return fetch(`${url}/${id}`,{
-            method:'PATCH',
+    toggleCompleate: (id, isDone) => {
+        return fetch(`${url}/${id}`, {
+            method: 'PATCH',
             headers,
-            body:JSON.stringify({isDone})
+            body: JSON.stringify({ isDone })
         })
     },
 }

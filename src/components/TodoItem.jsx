@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
+import RouterLink from "./RouterLink";
 
 const TodoItem = (props) => {
   const {
@@ -8,9 +9,9 @@ const TodoItem = (props) => {
     className,
     isDone,
   } = props;
-const {
-    toggleTaskComplete,deleteTask
-} = useContext(TaskContext)
+  const {
+    toggleTaskComplete, deleteTask
+  } = useContext(TaskContext)
   return (
     <li className={`todo-item ${className}`}>
       <input
@@ -21,11 +22,14 @@ const {
         checked={isDone}
       />
       <label
-        className="todo-item__label"
+        className="todo-item__label visually-hidden"
         htmlFor={id} // Исправлено: динамический id
       >
         {title}
       </label>
+      <RouterLink to={`/tasks/${id}`} aria-label='Tasks details page'>
+        {title}
+      </RouterLink>
       <button
         onClick={() => deleteTask(id)}
         className="todo-item__delete-button"

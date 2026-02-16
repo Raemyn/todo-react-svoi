@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { TaskContext } from "../context/TaskContext";
-import RouterLink from "./RouterLink";
+import { TaskContext } from "../../context/TaskContext";
+import RouterLink from "../RouterLink";
+
+import styles from './TodoItem.module.scss'
 
 const TodoItem = (props) => {
   const {
@@ -13,16 +15,18 @@ const TodoItem = (props) => {
     toggleTaskComplete, deleteTask
   } = useContext(TaskContext)
   return (
-    <li className={`todo-item ${className}`}>
+    <li className={`${styles.todoItem} ${className}`}>
       <input
-        className="todo-item__checkbox"
+        className={`${styles.checkbox}`}
         id={id}
         type="checkbox"
         onChange={(e) => toggleTaskComplete(id, e.target.checked)} // Исправлено!
         checked={isDone}
       />
       <label
-        className="todo-item__label visually-hidden"
+        className=   {`${styles.label} visually-hidden`}
+      
+      
         htmlFor={id} // Исправлено: динамический id
       >
         {title}
@@ -32,7 +36,7 @@ const TodoItem = (props) => {
       </RouterLink>
       <button
         onClick={() => deleteTask(id)}
-        className="todo-item__delete-button"
+        className={`${styles.deleteButton}`}
         aria-label="Delete"
         title="Delete"
       >

@@ -2,26 +2,27 @@ import { memo, useContext } from "react"
 import { TaskContext } from "../context/TaskContext"
 
 
-const TodoInfo = () => {
-    
-
+const TodoInfo = (props) => {
     const {
-       tasks,deleteALLTask
+        styles
+    } = props
+    const {
+        tasks, deleteALLTask
     } = useContext(TaskContext)
-    const total= tasks.length;
+    const total = tasks.length;
     const done = tasks.filter((task) => task.isDone !== true).length;
-    
+
     const hasTasks = total > 0
 
     return (
-        <div className="todo__info">
-            <div className="todo__total-tasks">
+        <div className={`${styles.info}`}>
+            <div className={`${styles.totalTasks}`}>
                 Done {done} from {total}
             </div>
 
             {hasTasks && (
                 <button
-                    className="todo__delete-all-button"
+                    className={`${styles.deleteAllButton}`}
                     type="button"
                     onClick={deleteALLTask}
                 >

@@ -1,7 +1,6 @@
-import { memo } from "react"
-
+import styles from './Button.module.scss'
 const Button = (props) => {
-    
+
     const {
         type,
         children,
@@ -13,7 +12,7 @@ const Button = (props) => {
         <button
             disabled={isDisabled}
             onClick={onAddTaskButtonClick}
-            className={`button ${className}`}
+            className={`${styles.button} ${className}`}
             type={type}
         >{children}
         </button>

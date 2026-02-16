@@ -1,18 +1,20 @@
 import { memo, useContext } from "react"
-import TodoItem from "./TodoItem"
+import TodoItem from "./TodoItem/TodoItem"
 import { TaskContext } from "../context/TaskContext"
 
 
 
-const TodoList = () => {
-  
-const {
-    tasks, filtredTasks
-} = useContext(TaskContext)
+const TodoList = (props) => {
+    const {
+        styles
+    } = props
+    const {
+        tasks, filtredTasks
+    } = useContext(TaskContext)
 
     return (
 
-        <ul className="todo__list">
+        <ul className={`${styles.list}`}>
             {(filtredTasks ?? tasks).map((task) =>
                 <TodoItem
                     id={task.id}

@@ -1,6 +1,6 @@
 import { memo, useContext } from "react"
-import Field from "./Field/Field"
-import { TaskContext } from "../context/TaskContext"
+import Field from "@/shared/ui/Field/Field"
+import { TaskContext } from "@/entities/todo"
 
 
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import taskAPI from "./taskAPI";
+import taskAPI from "@/shared/api/tasks";
 
 
 

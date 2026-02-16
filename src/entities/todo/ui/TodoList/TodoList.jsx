@@ -1,6 +1,6 @@
 import { memo, useContext } from "react"
-import TodoItem from "./TodoItem/TodoItem"
-import { TaskContext } from "../context/TaskContext"
+import TodoItem from "../TodoItem"
+import { TaskContext } from '@/entities/todo'
 
 
 

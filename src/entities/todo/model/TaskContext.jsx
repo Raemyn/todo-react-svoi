@@ -1,5 +1,5 @@
 import { createContext,  } from "react";
-import useTasks from "../hooks/useTasks";
+import useTasks from "../model/useTasks";
 
 export const TaskContext = createContext({})
 export const TasksProvider = (props) => {

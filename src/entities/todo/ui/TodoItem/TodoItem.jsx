@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TaskContext } from "../../context/TaskContext";
-import RouterLink from "../RouterLink";
+import { TaskContext } from '@/entities/todo';
+import RouterLink from "@/shared/ui/RouterLink";
 
 import styles from './TodoItem.module.scss'
 

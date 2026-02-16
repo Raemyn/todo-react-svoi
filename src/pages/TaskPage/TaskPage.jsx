@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import taskAPI from "../hooks/taskAPI";
+import taskAPI from "@/shared/api/tasks";
 const TaskPage = (props) => {
     const { params } = props
     const taskId = params.id

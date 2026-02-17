@@ -41,7 +41,7 @@ const useTasks = () => {
         })
     }, [])
 
-    const [newTaskTitle, setNewTaskTitle] = useState('')
+
 
     const deleteALLTask = useCallback(() => {
         const isConfirm = window.confirm('Вы уверены что хотите удалить все задачи?')
@@ -68,21 +68,17 @@ const useTasks = () => {
             })
     }, [])
 
-    const addTask = useCallback(() => {
-
-        if (newTaskTitle.trim().length > 0) {
-            const newTask = {
-                title: newTaskTitle,
-                isDone: false,
-            }
-            taskAPI.add(newTask)
-                .then((addedTask) => {
-                    dispatch({ type: 'ADD', task: addedTask })
-                    setNewTaskTitle('')
-                    setSearchQuery('')
-                })
+    const addTask = useCallback((title) => {
+        const newTask = {
+            title,
+            isDone: false,
         }
-    }, [newTaskTitle])
+
+        return taskAPI.add(newTask)
+            .then((addedTask) => {
+                dispatch({ type: 'ADD', task: addedTask })
+            })
+    }, [])
 
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -98,8 +94,8 @@ const useTasks = () => {
         deleteALLTask,
         toggleTaskComplete,
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
+
+
         searchQuery,
         setSearchQuery
     }

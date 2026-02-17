@@ -7,39 +7,32 @@ export const TasksProvider = (props) => {
   
     const {
         tasks,
-        filtredTasks,
+   
         deleteTask,
         deleteALLTask,
         toggleTaskComplete,
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
-        searchQuery,
-        setSearchQuery,
+      
+     
     } = useTasks()
 
   const value = useMemo(() => ({
         tasks,
-        filtredTasks,
+       
         deleteTask,
         deleteALLTask,
         toggleTaskComplete,
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
-        searchQuery,
-        setSearchQuery,
+       
+      
     }), [
         tasks,
-        filtredTasks,
+      
         deleteTask,
         deleteALLTask,
         toggleTaskComplete,
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
-        searchQuery,
-        setSearchQuery,
+      
     ])
     return (<TaskContext.Provider
         value={value}

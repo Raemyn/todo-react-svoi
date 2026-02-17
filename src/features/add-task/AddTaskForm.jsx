@@ -8,15 +8,22 @@ const AddTaskForm = (props) => {
     const {
         styles
     } = props
+    const [newTaskTitle, setNewTaskTitle] = useState('')
 
     const [error, setError] = useState('')
+    
     const onSubmit = (event) => {
         event.preventDefault()
-        addTask()
+
+        if (!newTaskTitle.trim()) return
+
+        addTask(newTaskTitle).then(() => {
+            setNewTaskTitle('')
+            setError('')
+        })
     }
     const {
-        addTask, newTaskTitle,
-        setNewTaskTitle,
+        addTask
     } = useContext(TaskContext)
     const onInput = (event) => {
         const { value } = event.target

@@ -31,7 +31,7 @@ const TodoItem = (props) => {
       >
         {title}
       </label>
-      <RouterLink to={`/tasks/${id}`} aria-label='Tasks details page'>
+      <RouterLink to={`tasks/${id}`} aria-label='Tasks details page'>
         {title}
       </RouterLink>
       <button

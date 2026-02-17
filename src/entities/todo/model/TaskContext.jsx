@@ -1,10 +1,10 @@
-import { createContext,  } from "react";
+import { createContext, useMemo, } from "react";
 import useTasks from "../model/useTasks";
 
 export const TaskContext = createContext({})
 export const TasksProvider = (props) => {
     const { children } = props
-    
+  
     const {
         tasks,
         filtredTasks,
@@ -18,20 +18,31 @@ export const TasksProvider = (props) => {
         setSearchQuery,
     } = useTasks()
 
-
+  const value = useMemo(() => ({
+        tasks,
+        filtredTasks,
+        deleteTask,
+        deleteALLTask,
+        toggleTaskComplete,
+        addTask,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        setSearchQuery,
+    }), [
+        tasks,
+        filtredTasks,
+        deleteTask,
+        deleteALLTask,
+        toggleTaskComplete,
+        addTask,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        setSearchQuery,
+    ])
     return (<TaskContext.Provider
-        value={{
-            tasks,
-            filtredTasks,
-            deleteTask,
-            deleteALLTask,
-            toggleTaskComplete,
-            addTask,
-            newTaskTitle,
-            setNewTaskTitle,
-            searchQuery,
-            setSearchQuery
-        }}
+        value={value}
     >
 
         {children}

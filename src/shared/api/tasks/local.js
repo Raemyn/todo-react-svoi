@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'tasks'
 const read = () => {
     try {
-        return JSON.parseLocalStorage.getItem(STORAGE_KEY) || `[]`
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     }
     catch (error) {
         return []

@@ -80,24 +80,13 @@ const useTasks = () => {
             })
     }, [])
 
-    const [searchQuery, setSearchQuery] = useState('');
-
-    const filtredTasks = useMemo(() => {
-        const clearSearchQuery = searchQuery.trim().toLowerCase()
-        return clearSearchQuery.length > 0
-            ? tasks.filter(({ title }) => title.toLowerCase().includes(clearSearchQuery)) : null
-    }, [searchQuery, tasks])
+ 
     return {
         tasks,
-        filtredTasks,
         deleteTask,
         deleteALLTask,
         toggleTaskComplete,
         addTask,
-
-
-        searchQuery,
-        setSearchQuery
     }
 }
 export default useTasks

@@ -1,31 +1,33 @@
-import { memo, useContext } from "react"
+import { memo, useContext, useMemo } from "react"
 import TodoItem from "../TodoItem"
 import { TaskContext } from "../../../todo"
 
 
 
-const TodoList = (props) => {
-    const {
-        styles
-    } = props
-    const {
-        tasks, filtredTasks
-    } = useContext(TaskContext)
+const TodoList = memo(({ styles, searchQuery }) => {
+    const { tasks } = useContext(TaskContext)
+
+    const filteredTasks = useMemo(() => {
+        const clear = searchQuery.trim().toLowerCase()
+        if (!clear) return tasks
+
+        return tasks.filter(task =>
+            task.title.toLowerCase().includes(clear)
+        )
+    }, [tasks, searchQuery])
 
     return (
-
-        <ul className={`${styles.list}`}>
-            {(filtredTasks ?? tasks).map((task) =>
+        <ul className={styles.list}>
+            {filteredTasks.map(task => (
                 <TodoItem
+                    key={task.id}
                     id={task.id}
                     title={task.title}
                     isDone={task.isDone}
-                    key={task.id}
                 />
-            )}
-
-
+            ))}
         </ul>
     )
-}
+})
+
 export default memo(TodoList)

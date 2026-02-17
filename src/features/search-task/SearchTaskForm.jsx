@@ -6,27 +6,18 @@ import { TaskContext } from "@/entities/todo"
 
 
 
-const SearchTaskForm = (props) => {
-  const {
-    styles
-  } = props
-  const {
-    searchQuery,
-    setSearchQuery,
-  } = useContext(TaskContext)
+const SearchTaskForm = memo(({ searchQuery, setSearchQuery }) => {
   return (
-    <form className={`${styles.form}`} onSubmit={(event) => event.preventDefault()}
-    >
+    <form onSubmit={e => e.preventDefault()}>
       <Field
         value={searchQuery}
-        onInput={(event) => setSearchQuery(event.target.value)}
-        id={"search-task"}
-        className={`${styles.field}`}
-        type={'search'}
-      >Search task
+        onInput={e => setSearchQuery(e.target.value)}
+        type="search"
+      >
+        Search task
       </Field>
-
     </form>
   )
-}
+})
+
 export default memo(SearchTaskForm) 
